@@ -56,21 +56,6 @@ app.delete("/sterge/:id", async (req, res) => {
   res.status(200).send(JSON.stringify(rezultat));
 });
 
-app.patch("/update/:id", async (req, res) => {
-  const id = req.params.id; //  Preiau valoarea parametrului "id"
-  //  Extrag numele fisierului
-  const numeFisier = req.files.fisier.name;
-  req.body.coperta = numeFisier; //  Adaug in req.body numele fisierului
-  const docRef = doc(db, "webtools", id);
-  await updateDoc(docRef, req.body);
-
-  //  Transfer fisierul in directorul /imagini
-  const fisierPrimit = req.files.fisier;
-  const cale = __dirname + "/../public/imagini/" + numeFisier; //  Se va edita după generarea versiunii finale!
-  fisierPrimit.mv(cale);
-  res.status(200).send(JSON.stringify({ mesaj: "Modificare reușita.", id }));
-});
-
 app.listen(port, () => {
   console.log(`Serverul așteaptă comenzi pe portul ${port}`);
 });

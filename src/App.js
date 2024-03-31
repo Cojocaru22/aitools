@@ -4,7 +4,6 @@ import { Container } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import ChatBoot from "./components/pages/chat";
 import CardsAI from "./components/cardsAI";
-import Home from "./components/pages/home";
 import AddCards from "./components/addCards";
 
 function App() {
