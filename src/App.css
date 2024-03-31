@@ -1,0 +1,77 @@
+/*-----------APP-----------*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+body {
+  background-color: rgb(198, 208, 207);
+  font-family: "Roboto", sans-serif;
+}
+
+/*-------------NAVI----------------*/
+.navbar {
+  font-weight: bold;
+  font-family: "Cuprum", sans-serif;
+  background-color: rgb(213, 223, 222);
+}
+.active {
+  text-decoration: none;
+  color: rgb(247, 88, 88);
+  padding: 0.5rem 1rem;
+  font-size: 20px;
+}
+.inactive {
+  color: #021f02;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-size: 20px;
+}
+.inactive:hover {
+  color: rgba(49, 165, 84, 0.5);
+}
+
+.dropdown-item {
+  color: rgb(201, 209, 215);
+}
+
+/*-------------LOGIN FORM------------*/
+
+.login {
+  min-height: 100vh; /* înălțimea minimă a elementului este setată la 100% din înălțimea vizibilă a ecranului */
+  width: 100%; /* lățimea elementului va fi de 100% din lățimea vizibilă a ecranului */
+  background-color: #44855e; /* culoarea de fundal */
+  position: absolute; /* fixăm elementul la marginea ecranului */
+  left: 0; /* fixăm elementul la marginea stângă a ecranului */
+}
+
+.login-card {
+  width: 80%;
+  max-width: 500px;
+}
+
+.login-title {
+  border-bottom: 3px solid rgb(232, 240, 254);
+  font-family: "Vibur", cursive;
+}
+
+/*----------CARDITEM-----------*/
+
+.cardItem {
+  width: 25rem;
+  margin-top: 1.25rem;
+  box-shadow: 5px 5px 5px rgb(142, 228, 142);
+}
+.cardItem .cardItem-text {
+  font-size: 0.9rem;
+}
+
+.cardItem .cardItem-image {
+  width: 100%;
+  height: auto;
+}
+.cardItem .cardItem-titlu {
+  font-weight: bold;
+  color: rgb(21, 55, 21);
+  text-transform: uppercase;
+  font-family: "Trirong", serif;
+}
+
+/*----------------ADDCARD------------*/

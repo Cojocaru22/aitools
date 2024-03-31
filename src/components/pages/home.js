@@ -7,10 +7,10 @@ const Home = () => {
     h1: { fontWeigt: "light" },
     p: { textAlign: "justify" },
     typed: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      textAlign: "center",
+      //display: "flex",
+      //justifyContent: "center",
+      //alignItems: "center",
+      //textAlign: "center",
       fontWeight: "bold",
       fontStyle: "italic",
       fontSize: "1.5rem",
@@ -19,23 +19,22 @@ const Home = () => {
 
   return (
     <>
-      <Container fluid>
-        <Row className="my-5 text-center">
-          <Col sm={8}>
+      <Container>
+        <Row className="my-5">
+          <Col sm={7}>
             <Image
-              className="my-3"
-              style={{ maxWidth: "500px", height: "400px" }}
-              src="./imagini/a1.png"
-              roundedCircle
+              className="my-3 "
+              src="./imagini/a4.png"
+              fluid
+              rounded
             ></Image>
-            <h1 style={stil.h}>Platforma Creativă Web</h1>
-            <p>
-              Resurse și Instrumente Esențiale pentru Transformarea Ideilor în
-              Realitate Digitală
-            </p>
           </Col>
-          <Col sm={4} style={stil.typed}>
+          <Col
+            sm={5}
+            className="d-flex justify-content-center align-items-center "
+          >
             <Typed
+              style={stil.typed}
               strings={["Front-end", "Backend", "Tool AI", "Design UI/UX"]}
               typeSpeed={40}
               backSpeed={60}
@@ -43,15 +42,19 @@ const Home = () => {
             />
           </Col>
         </Row>
-
+        <Row className="text-center">
+          <h1 style={stil.h}>Platforma Creativă Web</h1>
+          <p>
+            Resurse și Instrumente Esențiale pentru Transformarea Ideilor în
+            Realitate Digitală
+          </p>
+        </Row>
         <Row className="px-2 my-5">
           <Col sm={7}>
             <Image src="./imagini/w1.png" fluid rounded></Image>
           </Col>
           <Col sm={5}>
-            <h1 class style={stil.h}>
-              Software Development
-            </h1>
+            <h2 style={stil.h}>Software Development</h2>
             <p style={stil.p}>
               Este o platformă integrală destinată dezvoltatorilor web, oferind
               o gamă extensivă de unelte și resurse pentru toate fazele
@@ -69,11 +72,10 @@ const Home = () => {
             </p>
           </Col>
         </Row>
-
-        <Row className=" my-5">
+        <Row className="my-5">
           <Card>
             <Card.Header>
-              <h>Tooluri si tehnologii folosite</h>
+              <h3>Tooluri si tehnologii folosite</h3>
               <Nav
                 variant="pills"
                 defaultActiveKey="#first"
@@ -124,6 +126,53 @@ const Home = () => {
               <Button variant="primary">Detalii</Button>
             </Card.Body>
           </Card>
+        </Row>
+        <Row>
+          <Col>
+            <Card xs={1} md={1} className="g-4">
+              <Card.Img variant="top" src="./imagini/w1.png" />
+              <Card.Body>
+                <Card.Title>Card Title</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </Card.Text>
+
+                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="#">Another Link</Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ width: "25rem" }}>
+              <Card.Img variant="top" src="./imagini/w1.png" />
+              <Card.Body>
+                <Card.Title>Card Title</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </Card.Text>
+
+                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="#">Another Link</Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ width: "25rem" }}>
+              <Card.Img variant="top" src="./imagini/w1.png" />
+              <Card.Body>
+                <Card.Title>Card Title</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </Card.Text>
+
+                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="#">Another Link</Card.Link>
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
       </Container>
     </>

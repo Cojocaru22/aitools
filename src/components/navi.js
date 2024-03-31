@@ -1,73 +1,104 @@
 import React, { useState, useEffect } from "react";
-import { Nav, Navbar, Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Nav, Navbar, Image, NavDropdown, Container } from "react-bootstrap";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../components/auth/authContext";
+import "../App.css";
 
 const Navi = () => {
-  const activ = { fontWeight: "bold", color: "red" };
-  const stilLink = {
-    color: "black",
-    textDecoration: "none",
+  const { currentUser, loading } = useAuth();
+
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  // Verifică dacă datele sunt încă în proces de încărcare și, în acest caz, returnează un element de încărcare sau null
+  if (loading) {
+    return null; // sau un indicator de încărcare, dacă preferi
+  }
+
+  const handleLogout = () => {
+    console.log("Logging out...");
+    logout()
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error("Error during sign out:", error);
+      });
   };
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
-
-  const updateMedia = () => {
-    setIsMobile(window.innerWidth < 992);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: "#e8e8e1" }}>
-      <Container fluid>
-        <Navbar.Brand
-          className="px-5 "
-          Text
-          style={{ fontWeight: "bold" }}
-          as={NavLink}
-          to="/"
-        >
-          WebTOOLS
+    <Navbar fixed="top" expand="lg" data-bs-theme="light" className="navbar">
+      <Container>
+        <Navbar.Brand href="/">
+          <Image
+            src="./imagini/logo2.png"
+            alt="logo"
+            style={{ width: "100px", height: "70px" }} // Inline styles to maintain dimensions
+            rounded
+          ></Image>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav
-            className="ms-auto px-5"
-            style={isMobile ? { textAlign: "center" } : {}}
-          >
-            <Nav.Link
-              as={NavLink}
+          <Nav className="me-auto">
+            <NavLink
               to="/"
-              exact
-              style={({ isActive }) => (isActive ? activ : stilLink)}
+              exact="true"
+              className={({ isActive }) => (isActive ? "active" : "inactive")}
             >
               Home
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to="/cards"
-              style={({ isActive }) => (isActive ? activ : stilLink)}
+            </NavLink>
+
+            <NavLink
+              to="/collection"
+              className={({ isActive }) => (isActive ? "active" : "inactive")}
             >
-              Cards
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
+              Categorii
+            </NavLink>
+            <NavLink
               to="/chat"
-              style={({ isActive }) => (isActive ? activ : stilLink)}
+              className={({ isActive }) => (isActive ? "active" : "inactive")}
             >
-              ChatBoot
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
-              to="/addCards"
-              style={({ isActive }) => (isActive ? activ : stilLink)}
-            >
-              Form
-            </Nav.Link>
+              Chat
+            </NavLink>
           </Nav>
+
+          {currentUser ? (
+            <>
+              <Nav className="ms-auto">
+                <NavDropdown
+                  title={
+                    <span
+                      className={({ isActive }) =>
+                        isActive ? "active" : "inactive"
+                      }
+                    >
+                      Admin
+                    </span>
+                  }
+                  id="basic-nav-dropdown"
+                >
+                  <NavLink to="/add-cards" className="dropdown-item">
+                    Admin
+                  </NavLink>
+                  <NavLink to="/formular" className="dropdown-item">
+                    Formular
+                  </NavLink>
+                </NavDropdown>
+                <Nav.Link className="inactive" onClick={handleLogout}>
+                  Logout
+                </Nav.Link>
+              </Nav>
+            </>
+          ) : (
+            <Nav className="ms-auto">
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "inactive")}
+              >
+                Login
+              </NavLink>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

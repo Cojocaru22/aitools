@@ -1,25 +1,47 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, ButtonGroup } from "react-bootstrap";
+import { BsTrashFill } from "react-icons/bs";
+import { BsPencilSquare } from "react-icons/bs";
 
 const CardItem = (props) => {
-  const { imagine, titlu, descriere, url } = props; //  Destructurare props
+  const { imagine, titlu, descriere, url, currentUser, sterge, editeaza, id } =
+    props; //  Destructurare props
 
-  const stil = {
-    card: { width: "25rem", marginTop: "20px" },
-    text: { fontSize: "0.9rem" },
-    imagine: { variant: "top" },
-  };
+  console.log("Apelare funcție editeaza din CardItem pentru ID:", id);
 
   return (
-    <Card style={stil.card}>
-      <Card.Img style={stil.imagine} src={imagine} />
+    <Card className="cardItem">
+      <Card.Img
+        className="cardItem-image"
+        variant="top"
+        src={imagine}
+        alt="collection image"
+      />
       <Card.Body>
-        <Card.Title>{titlu.toUpperCase()}</Card.Title>
-        <Card.Text style={stil.text}>{descriere}</Card.Text>
+        <Card.Title className="cardItem-titlu">{titlu}</Card.Title>
 
-        <Button variant="primary" href={url}>
-          Visit Site
-        </Button>
+        <Card.Text className="cardItem-text">{descriere}</Card.Text>
+        <div className="d-flex justify-content-between align-items-center">
+          <a href={url} className="btn btn-outline-secondary" role="button">
+            Visit Site
+          </a>
+
+          {currentUser && (
+            <ButtonGroup>
+              <Button
+                variant="link"
+                onClick={() => editeaza(id)}
+                id={id}
+                className="me-2"
+              >
+                <BsPencilSquare />
+              </Button>
+              <Button variant="link" onClick={() => sterge(id)} id={id}>
+                <BsTrashFill />
+              </Button>
+            </ButtonGroup>
+          )}
+        </div>
       </Card.Body>
     </Card>
   );
